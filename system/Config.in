@@ -95,6 +95,12 @@ config BR2_INIT_BUSYBOX
 	select BR2_PACKAGE_INITSCRIPTS
 	select BR2_PACKAGE_SKELETON_INIT_SYSV if BR2_ROOTFS_SKELETON_DEFAULT
 
+config BR2_INIT_DINIT
+        bool "Dinit"
+        depends on BR2_USE_MMU
+        select BR2_PACKAGE_DINIT
+        select BR2_PACKAGE_SKELETON_INIT_SYSV if BR2_ROOTFS_SKELETON_DEFAULT
+
 config BR2_INIT_SYSV
 	bool "systemV"
 	depends on BR2_USE_MMU # sysvinit
