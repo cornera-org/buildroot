@@ -19,6 +19,15 @@ config BR2_PACKAGE_MOSQUITTO
 
 	  https://mosquitto.org/
 
+config BR2_PACKAGE_MOSQUITTO_OPENSSL
+	bool "enable OpenSSL (TLS) support"
+	default y
+	depends on BR2_PACKAGE_MOSQUITTO
+	select BR2_PACKAGE_OPENSSL
+	help
+	  Enable TLS support in mosquitto via OpenSSL. Disable this option
+	  to build mosquitto without OpenSSL and TLS/PSK features.
+
 config BR2_PACKAGE_MOSQUITTO_BROKER
 	bool "install the mosquitto broker"
 	default y
@@ -33,7 +42,7 @@ config BR2_PACKAGE_MOSQUITTO_BROKER_DYNAMIC_SECURITY_PLUGIN
 	bool "dynamic security plugin"
 	depends on BR2_PACKAGE_MOSQUITTO_BROKER
 	select BR2_PACKAGE_CJSON
-	select BR2_PACKAGE_OPENSSL
+	select BR2_PACKAGE_MOSQUITTO_OPENSSL
 	help
 	  Build and install the dynamic security plugin for
 	  mosquitto broker onto target.
